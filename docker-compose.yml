@@ -7,4 +7,4 @@ services:
       - .:/site
     ports:
       - '4000:4000'
-    command: bundle exec jekyll serve --force_polling --future --unpublished -H 0.0.0.0 -P 4000
+    command: bundle exec jekyll serve --force_polling --future --unpublished --drafts -H 0.0.0.0 -P 4000
