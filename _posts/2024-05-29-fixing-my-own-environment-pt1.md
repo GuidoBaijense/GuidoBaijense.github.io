@@ -4,7 +4,6 @@ author: Guido
 categories: [Microsoft Entra ID, Tutorial]
 tags: [entra, identity governance, conditional access, diy]
 image: ../assets/img/fixing-my-own-environment-pt1/maester-report.png
-date: '2024-05-29T17:10:53+01:00'
 published: true
 ---
 # Fixing my own environment
