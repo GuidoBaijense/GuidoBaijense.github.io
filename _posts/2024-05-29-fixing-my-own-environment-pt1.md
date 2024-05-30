@@ -6,7 +6,6 @@ tags: [entra, identity governance, conditional access, diy]
 image: ../assets/img/fixing-my-own-environment-pt1/maester-report.png
 published: true
 ---
-# Fixing my own environment
 
 In Dutch, we have a saying: *'Bij de loodgieter lekt de kraan,'* which translates to 'The plumber has a leaking tap.' It means that someone may be good at their own job but doesn't pay attention to their own property. In this **blog series** I want to take you with me on a mission to achieve a top-notch Identity configuration for my own development tenant. For customers, I always strive for the best, but my own tenant is a mess. Believe me. **Follow me along as I'll use Open Source tools as guidance and improve security.**
 
