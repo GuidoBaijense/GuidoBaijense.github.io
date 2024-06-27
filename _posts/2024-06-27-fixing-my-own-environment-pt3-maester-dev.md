@@ -9,11 +9,10 @@ published: false
 
 [Maester.dev](https://maester.dev) is an open source framework to help administrators to stay on top of their Microsoft tenant's security configuration. And it's hot🔥. Maester focusses on monitoring critical aspects of your Microsoft Environment with your Security as Code baseline. It launched April 10th, 2024 (v0.0.116) with 60 built in tests and is constantly developing (currently v0.0.129). `Update: 0.1.0` It now features 115 tests from the [Entra ID Security Config Analyzer (EIDSCA)](https://github.com/Cloud-Architekt/AzureAD-Attack-Defense/blob/main/AADSecurityConfigAnalyzer.md) by [Thomas Naunheim](https://www.cloud-architekt.net/) & [Sami Lamppu](https://samilamppu.com/) (and others), the [CISA SCuBA Project](https://www.cisa.gov/resources-tools/services/secure-cloud-business-applications-scuba-project) and other best practices.
 
-Maester comes as a PowerShell module with Microsoft Graph authentication integrated. Since it is built upon [Pester](https://pester.dev/), it is also possible to add your own tests to the framework. Most of the built in tests offer explanations why a result is good or bad and include direct links to the Microsoft admin portals where you can immediatly fix the issues. 
+Maester comes as a PowerShell module with Microsoft Graph authentication integrated. Since it is built upon [Pester](https://pester.dev/), it is also possible to add your own tests to the framework. Most of the built in tests offer explanations why a result is good or bad and include direct links to the Microsoft admin portals where you can immediately fix the issues.
 
 >Maester is developed by Fabian Bader, Thomas Naunheim and Merill Fernando. Since it is open source, you can contribute directly on [<i class="fa-brands fa-github"></i> GitHub](https://github.com/maester365/maester).
 {: .prompt-tip}
-
 > This blog series is about my path to a safer environment. All shown vulnerabilities have already been patched.
 {: .prompt-danger}
 
@@ -37,14 +36,15 @@ _EIDSCA - Authentication Methods result_
 
 #### Legacy (per user) MFA portal > Converged Authentication Methods pane
 
-I haven't migrated from the legacy MFA portal to the new converged authentication methods pane yet. Microsoft wanted to enforce this migration in september this year, but have pushed it further down the road to give organizations some slack. The new pane offers multiple advantages over the old situation where you had to manage authentincation methods seperatly for Self Service Password Reset and Azure MFA. We already had the combined registration policy for SSPR and MFA, but which methods could be used was still managed seperately. 
+I haven't migrated from the legacy MFA portal to the new converged authentication methods pane yet. Microsoft wanted to enforce this migration in september this year, but have pushed it further down the road to give organizations some slack. The new pane offers multiple advantages over the old situation where you had to manage authentication methods separately for Self Service Password Reset and Azure MFA. We already had the combined registration policy for SSPR and MFA, but which methods could be used was still managed separately.
 
-With the new pane, it is possible to target policies based on security groups. This way, you can enable unsecure MFA-methods for specific users, or start testing new safer methods with a testgroup.
+With the new pane, it is possible to target policies based on security groups. This way, you can enable unsecure MFA-methods for specific users, or start testing new safer methods with a test group.
 
 To migrate, take the following steps:
+
 1. Analyze what methods are registered by your end-users. Use the [User registration details](https://entra.microsoft.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade/~/UserRegistrationDetails/fromNav/) report.
 2. Analyze what methods are [allowed in SSPR](https://entra.microsoft.com/#view/Microsoft_AAD_IAM/PasswordResetMenuBlade/~/AuthenticationMethods/fromNav/) and the [Legacy MFA portal.](https://account.activedirectory.windowsazure.com/UserManagement/MfaSettings.aspx)
-3. Make sure that the required methods are enabled in the new [Authentication Methods pane.](https://portal.azure.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade/~/AdminAuthMethods) 
+3. Make sure that the required methods are enabled in the new [Authentication Methods pane.](https://portal.azure.com/#view/Microsoft_AAD_IAM/AuthenticationMethodsMenuBlade/~/AdminAuthMethods)
 4. Trigger MFA via Conditional Access instead of the legacy MFA portal.
 5. Disable MFA for all users where it is configured as 'enforced' or 'enabled' in the legacy MFA portal.
 6. Disable all allowed authentication methods in the legacy MFA portal and the SSPR authentication methods pane.
@@ -111,7 +111,7 @@ It was probably better to combine all the above actions at once.
 
 ### EIDSCA: Miscellaneous advises
 
-With the last 7 changes, my tenant almost complies to all Entra ID Security Config Analyzer (EIDSCA) Tests. There are 7 EIDSCA findings left and I will not comply to a few of those tests. Like mentioned before, EIDSCA.AF04 checks if you enforce FIDO2 security key restrictions. And I don't. The same goes for EIDSCA.AM09 that checks for the geographic location in push and passwordless notifications. Antoher one is the Temporary Access Pass check EIDSCA.AT02 that requires the TAP to be configured as One-time use. In certain situations I will advise single time use. However, during passwordless onboardings it can be easier for organizations to manage the process when the TAP-credential is time-limited. In my environment, I am the only one that can create TAPs. Single use won't add anything to the security posture in this case.
+With the last 7 changes, my tenant almost complies to all Entra ID Security Config Analyzer (EIDSCA) Tests. There are 7 EIDSCA findings left and I will not comply to a few of those tests. Like mentioned before, EIDSCA.AF04 checks if you enforce FIDO2 security key restrictions. And I don't. The same goes for EIDSCA.AM09 that checks for the geographic location in push and password-less notifications. Another one is the Temporary Access Pass check EIDSCA.AT02 that requires the TAP to be configured as One-time use. In certain situations I will advise single time use. However, during password-less onboardings it can be easier for organizations to manage the process when the TAP-credential is time-limited. In my environment, I am the only one that can create TAPs. Single use won't add anything to the security posture in this case.
 
 #### EIDSCA Default Settings - Consent Policy settings
 
@@ -120,7 +120,7 @@ You've heard it before. Not everything has an impact on my environment as I am t
 - EIDSCA.CP01: Default Settings - Consent Policy Settings - Group owner consent for apps accessing data.
 - EIDSCA.CP04: Default Settings - Consent Policy Settings - Users can request admin consent to apps they are unable to consent to.
 
-Both are also mentioned in the CISA SCuBA project. The first one is a setting in which you can restrict group and team owners to authorize (third-party) applications to access organizational data that is associated with a group. This means that a team owner can allow apps to read all messages of that team, or a SharePoint site owner to share all files with a certain application with just a few clicks. I believe that applications should be authorized by users that know the risks of it and actualy conduct due diligence before adding a new application to the environment.
+Both are also mentioned in the CISA SCuBA project. The first one is a setting in which you can restrict group and team owners to authorize (third-party) applications to access organizational data that is associated with a group. This means that a team owner can allow apps to read all messages of that team, or a SharePoint site owner to share all files with a certain application with just a few clicks. I believe that applications should be authorized by users that know the risks of it and actually conduct due diligence before adding a new application to the environment.
 
 ##### Issue with the test
 
@@ -134,7 +134,7 @@ To fix the config tenant wide, you can do the following `PATCH` request to the b
 }
 ```
 
-The second one is regarding the setting that allows users to request admin consent for adding permissions to apps that the user does not have the permission for itselfs. In some organizations I advise to keep this setting disabled as they will probably never look into this requests and the requester will also forget about it in a few days. No permission is safer that too many permissions, right? If users really want access or need it, they will find a way to contact the admins and it will get fixed.
+The second one is regarding the setting that allows users to request admin consent for adding permissions to apps that the user does not have the permission for itself. In some organizations I advise to keep this setting disabled as they will probably never look into this requests and the requester will also forget about it in a few days. No permission is safer that too many permissions, right? If users really want access or need it, they will find a way to contact the admins and it will get fixed.
 
 The easiest way to change this setting is in the portal, as with graph it is kinda hard to do. [Portal link to Admin Consent Settings.](https://portal.azure.com/#view/Microsoft_AAD_IAM/ConsentPoliciesMenuBlade/~/AdminConsentSettings)
 
@@ -150,9 +150,9 @@ The test that fails is for the setting that enforces the password protection pol
 ![Current password protection settings](<../assets/img/fixing-my-own-environment-pt3-maester-dev/Password Protection settings.png>)
 _Default Password Protection settings with two custom banned passwords_
 
-My advise is to lower the lockout treshold, make the lockout duration longer and add multiple company-, branche, and location related words in the custom banned password list. Since I try to get as much green ticks as possible, I will enforce the on-premises Password Protection.
+My advise is to lower the lockout threshold, make the lockout duration longer and add multiple company-, branch, and location related words in the custom banned password list. Since I try to get as much green ticks as possible, I will enforce the on-premises Password Protection.
 
-When the _Maester_ part for this blog series is finished, I will change the lockout treshold to a much lower value and change the lockout duration to something like 10 minutes. When I review sign in logs for customers, I often see hack attempts with around 9 bad sign in attempts for a user before the requests switch to another IP-address. When you lower the treshold, those bots will be less effective as the user account is locked for a longer period and less attempts can be made.
+When the _Maester_ part for this blog series is finished, I will change the lockout threshold to a much lower value and change the lockout duration to something like 10 minutes. When I review sign in logs for customers, I often see hack attempts with around 9 bad sign in attempts for a user before the requests switch to another IP-address. When you lower the threshold, those bots will be less effective as the user account is locked for a longer period and less attempts can be made.
 
 ## Enough for now
 
@@ -163,5 +163,6 @@ _Maester Test Results afterwards_
 O, and I don't know why it now lists 114 tests, while it first had 115. Without updating the module or test files. Strange.
 
 ## Something else: Microsoft Global Partner of the Year Award 2024
+
 > My team at [InSpark](https://www.inspark.nl) has won the Microsoft Global Partner of the Year Award 2024 in the category `Identity`. I would like to thank Microsoft and my awesome team members [Pim Jacobs (Identity-man.eu)](https://identity-man.eu/), [Guus van Berge](https://www.linkedin.com/in/guusvanberge/), [Matthijs Tuenter](https://www.linkedin.com/in/matthijs-tuenter/), [Barry Oudejans](https://www.linkedin.com/in/barry-oudejans/), [Jelmer Vorstenburg](https://www.linkedin.com/in/jelmervorstenburg) and [Robbert Kelder](https://www.linkedin.com/in/rskelder/) for the awesome year we've had and I'm sure we can continue this the following FY.
 {: .prompt-info}

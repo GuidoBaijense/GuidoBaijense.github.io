@@ -12,7 +12,6 @@ In the previous blog, I introduced you to my efforts to elevate the **identity a
 > This blog series is about my path to a safer environment. All shown vulnerabilities have already been patched.
 {: .prompt-warning}
 
-
 ![Modern Secure Score for Identity start result](<../assets/img/fixing-my-own-environment-pt1/identity secure score start.png>){: w="350" }
 _Modern Secure Score for Identity result at the start_
 
@@ -24,8 +23,8 @@ We will first work with the classic overview of Identity Secure score. Based on 
 
 | Name    | Score Impact | Current Score | Max Score | User Impact | Implementation Cost | Status |
 | -------- | ------- | -------- | ------- | -------- | ------- | -------- |
-| Ensure multifactor authentication is enabled for all users in administrative roles|17.86%|10|10|Low|Low|Completed|
-| **Ensure multifactor authentication is enabled for all users** | **16.07%** | **4.5** | **9** | **High** | **High** | **To address** |
+| Ensure multi-factor authentication is enabled for all users in administrative roles|17.86%|10|10|Low|Low|Completed|
+| **Ensure multi-factor authentication is enabled for all users** | **16.07%** | **4.5** | **9** | **High** | **High** | **To address** |
 |Ensure the 'Password expiration policy' is set to 'Set passwords to never expire (recommended)'|14.29%|8|8|Moderate|Low|Completed|
 |Enable Conditional Access policies to block legacy authentication|14.29%|8|8|Moderate|Moderate|Completed |
 |**Enable Microsoft Entra ID Identity Protection sign-in risk policies**|**12.50%** |**0** |**7** |**Moderate** |**Moderate** |**To address** |
@@ -36,7 +35,8 @@ We will first work with the classic overview of Identity Secure score. Based on 
 |Use least privileged administrative roles |1.79% |1 |1 |Low |Low |Completed|
 
 The four remaining points are:
-1. Ensure multifactor authentication is enabled for all users
+
+1. Ensure multi-factor authentication is enabled for all users
 2. Enable Microsoft Entra ID Identity Protection sign-in risk policies
 3. Enable Microsoft Entra ID Identity Protection user risk policies
 4. Designate more than one global admin
@@ -44,11 +44,13 @@ The four remaining points are:
 Let's start with the last one. Because, why not?
 
 ### Multiple Global Administrators
+
 Adding multiple Global Administrators could have been the easiest recommendation to implement. However, it isn't as straightforward as it seems. Currently, I have assigned this role to my main user. Wow. Bad practice. But hey, it is a development tenant, right? I will change this to a Break Glass setup where I create a new user, protect the user with a Passkey, and assign the account permanent Global Administrator permissions. I can then make my main administrator account Eligible for Global Administrator via Privileged Identity Management. To limit the risk of phishing, I've removed the license and mailbox for this Break Glass user.
 
 Microsoft states in the description of this item that the *CIS O365 Benchmark 2.0.0* suggests to have between two and four global admins. On the other hand, Microsoft advises limiting the number of privileged roles in your environment as much as possible. In the Privileged Identity Management overview, Microsoft even warns you when you have more than five Global Administrators.
 
 #### Rationale
+
 Microsoft gives the following rationale:
 > If there is only one global tenant administrator, he or she can perform malicious activity without the possibility of being discovered by another admin. If there are numerous global tenant administrators, the more likely it is that one of their accounts will be successfully breached by an external attacker.
 
@@ -57,6 +59,7 @@ Adding multiple Global Administrators in my environment only helps with the risk
 One down, three to go.
 
 ### Enable Microsoft Entra ID Identity Protection user risk policies
+
 This recommendation has a significant impact on the Secure Score for Identity (12.50%). It requires an Entra ID P2 license. An Entra ID Identity Protection user risk policy can be created via Conditional Access. I once imported the Conditional Access framework that we developed at InSpark for our customers, but I have not enabled the Identity Protection policies yet. I don't know why. Now is the time to do so. If you want to work on Conditional Access but do not have experience with it, check out the [available built-in templates](https://portal.azure.com/#view/Microsoft_AAD_ConditionalAccess/CaTemplates.ReactView).
 
 ![Available Conditional Access Templates](<../assets/img/fixing-my-own-environment-pt2-secure-score/conditional access templates.png>)
@@ -65,10 +68,12 @@ _Available Conditional Access Policy Templates_
 Another way to get started with Conditional Access is by implementing a pre-defined framework. For example, the [Zero Trust framework](https://github.com/microsoft/ConditionalAccessforZeroTrustResources/tree/main) that was made available by Claus Jespersen of Microsoft.
 
 ### Enable Microsoft Entra ID Identity Protection sign-in risk policies
+
 Nothing different from the recommendation before. I already had the policy, it was just not enabled.
 
-### Ensure multifactor authentication is enabled for all users
-The recommendation is to ensure multifactor authentication (MFA) for all users. Microsoft Entra ID provides multiple methods to register MFA. A policy can be set to require MFA registration during the user's next login, and it has been set. It is enabled for all users, but we do not get the full score yet. The current score is 4.5 out of a maximum of 9 points, which is because half of my (fake) users have not registered an additional authentication method. This means that I have never signed in with those users; otherwise, I would have had to register an MFA method.
+### Ensure multi-factor authentication is enabled for all users
+
+The recommendation is to ensure multi-factor authentication (MFA) for all users. Microsoft Entra ID provides multiple methods to register MFA. A policy can be set to require MFA registration during the user's next login, and it has been set. It is enabled for all users, but we do not get the full score yet. The current score is 4.5 out of a maximum of 9 points, which is because half of my (fake) users have not registered an additional authentication method. This means that I have never signed in with those users; otherwise, I would have had to register an MFA method.
 
 In a production environment, this is a huge risk, and you might encounter this situation when locations like the office are not in scope for MFA enforcement. Users who only work in the office never have to register for MFA, and the first person to use the account from somewhere else (with stolen credentials) can register MFA without anyone noticing any strange behavior.
 
@@ -78,7 +83,7 @@ One way I can still secure those users is by requiring *secure registration of M
 
 |Scope|Target resources|Conditions|Access controls - Grant|
 |---|---|---|---|
-|All Users, except the Break Glass account|User actions: Register security information|Any device, location or client app|Require multifactor authentication|
+|All Users, except the Break Glass account|User actions: Register security information|Any device, location or client app|Require multi-factor authentication|
 
 This ensures that even the users who have not yet registered an MFA method cannot be used to gain access to my tenant.
 
@@ -98,8 +103,8 @@ Let's have a look at the recommendations. In the new overview, there are 13 reco
 | Low | Use least privileged administrative roles | 1/1 | Users | Completed |
 | *High* | *Protect all users with a user risk policy* |  *0/7* | *Users* | *Active* |
 | *High* | *Protect all users with a sign-in risk policy* |  *0/7* | *Users* | *Active* |
-| High | Require multifactor authentication for administrative roles |  10/10 | Users | Completed |
-| *High* | *Ensure all users can complete multifactor authentication* |  *4.50/9* | *Users* | *Active* |
+| High | Require multi-factor authentication for administrative roles |  10/10 | Users | Completed |
+| *High* | *Ensure all users can complete multi-factor authentication* |  *4.50/9* | *Users* | *Active* |
 | High | Enable policy to block legacy authentication |  8/8 | Users | Completed |
 | *Low* | *Designate more than one global admin* |  *0/1* | *Users* | *Active* |
 | **High** | **Renew expiring application credentials** |  **N/A**| **Applications** | **Active** |
@@ -123,9 +128,9 @@ Microsoft provides the following rationale for this recommendation:
 It would have been great if we could immediately take action by selecting items in this list and clicking a button. Via the Actions column, it is possible to get more details and later click through to the application, where I had to manually remove the app or the credentials.
 
 ![More details pane for remove unused credentials recommendation](<../assets/img/fixing-my-own-environment-pt2-secure-score/remove credentials more details.png>)
-_More details pane for the remove unused credentials recommendation_ 
+_More details pane for the remove unused credentials recommendation_
 
-Fixed. two to go. 
+Fixed. two to go.
 
 ### Remove unused applications
 
@@ -161,7 +166,7 @@ Achieving 100% is not possible in my setup because I use a Break Glass account t
 
 |Name|Score Impact|Current Score|Max Score|User Impact|Implementation Cost|Status|
 |----|----|----|----|----|---|---|
-|Ensure multifactor authentication is enabled for all users|16.07%|4.67|9|High|High|Risk accepted|
+|Ensure multi-factor authentication is enabled for all users|16.07%|4.67|9|High|High|Risk accepted|
 |Enable Microsoft Entra ID Identity Protection sign-in risk policies|12.50%|6.74|7|Moderate|Moderate|Risk accepted|
 |Enable Microsoft Entra ID Identity Protection user risk policies|12.50%|6.74|7|Moderate|Moderate|Risk accepted|
 
