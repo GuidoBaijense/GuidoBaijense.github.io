@@ -7,7 +7,11 @@ image: ../assets/img/fixing-my-own-environment-pt2-secure-score/SecureScore over
 published: true
 ---
 
-In the previous blog, I introduced you to my efforts to elevate the identity and security of my developer tenant to the highest standard. This blog will zoom in on Microsoft Secure Score for Identity. We will find out how this tool can help us _fix my own environment._
+In the previous blog, I introduced you to my efforts to elevate the **identity and security** of my developer tenant to the highest standard. This blog will zoom in on **Microsoft Secure Score for Identity**. We will find out how this tool can help us _fix my own environment._
+
+> This blog series is about my path to a safer environment. All shown vulnerabilities have already been patched.
+{: .prompt-warning}
+
 
 ![Modern Secure Score for Identity start result](<../assets/img/fixing-my-own-environment-pt1/identity secure score start.png>){: w="350" }
 _Modern Secure Score for Identity result at the start_

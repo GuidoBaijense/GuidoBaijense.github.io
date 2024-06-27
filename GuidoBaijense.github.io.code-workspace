@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../GuidoBaijense.github.io"
+		},
+		{
+			"path": "../backup pages"
+		}
+	],
+	"settings": {
+		"markdown.copyFiles.destination": {
+			"/_posts/**/*": "/assets/img/${documentBaseName}/",
+			"/_drafts/**/*": "/assets/img/${documentBaseName}/"
+		},
+		"markdown.styles": [
+			"/home/guido/Documents/pentiago365/GuidoBaijense.github.io/_site/assets/css/jekyll-theme-chirpy.css"
+		],
+		"markdown-preview-github-styles.colorTheme": "system"
+	}
+}
+
