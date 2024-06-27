@@ -4,7 +4,6 @@ author: Guido
 categories: [Microsoft Entra ID, Tutorial]
 tags: [entra, identity governance, conditional access, diy, maester]
 image: ../assets/img/fixing-my-own-environment-pt3-maester-dev/maester-dev-header.png
-published: false
 ---
 
 [Maester.dev](https://maester.dev) is an open source framework to help administrators to stay on top of their Microsoft tenant's security configuration. And it's hot🔥. Maester focusses on monitoring critical aspects of your Microsoft Environment with your Security as Code baseline. It launched April 10th, 2024 (v0.0.116) with 60 built in tests and is constantly developing (currently v0.0.129). `Update: 0.1.0` It now features 115 tests from the [Entra ID Security Config Analyzer (EIDSCA)](https://github.com/Cloud-Architekt/AzureAD-Attack-Defense/blob/main/AADSecurityConfigAnalyzer.md) by [Thomas Naunheim](https://www.cloud-architekt.net/) & [Sami Lamppu](https://samilamppu.com/) (and others), the [CISA SCuBA Project](https://www.cisa.gov/resources-tools/services/secure-cloud-business-applications-scuba-project) and other best practices.
