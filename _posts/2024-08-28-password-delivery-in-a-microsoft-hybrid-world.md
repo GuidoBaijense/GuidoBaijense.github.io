@@ -23,7 +23,7 @@ I’ve implemented a similar method for clients where passwordless is the norm. 
 
 What methods do we natively have to retrieve a password in a Hybrid Environment when leveraging API-driven inbound user provisioning?
 
-1. Provision the end users mobile phone number and direct users to https://aka.ms/sspr for a 'forgotten password'.[^footnote]
+1. Provision the end users mobile phone number and direct users to https://aka.ms/sspr for a 'forgotten password'.[^1]
 2. Send a TAP to the manager via Microsoft Entra Lifecycle Workflows and ask them to register MFA-methods in https://aka.ms/mysecurityinfo and then experience the 'I forgot my password'-flow at https://aka.ms/sspr.
 3. Instruct users to contact a Servicedesk or IT Admin for a password reset.
 
@@ -31,7 +31,7 @@ I have issues with all of them. The user has never received a password, so they 
 
 ## What else?
 
-Microsoft Graph is, as far as I know, not an option[^fn-nth-2][^fn-nth-3]. Because we are talking about hybrid environments, the password needs to be changed on-premises. SSPR can change passwords on-premises, but I just wrote that I don't want to use that route. If you want to extend cloud automation to on-premises, Azure Automation offers Extension-based Hybrid Workers.
+Microsoft Graph is, as far as I know, not an option[^2][^3]. Because we are talking about hybrid environments, the password needs to be changed on-premises. SSPR can change passwords on-premises, but I just wrote that I don't want to use that route. If you want to extend cloud automation to on-premises, Azure Automation offers Extension-based Hybrid Workers.
 
 Using the Hybrid Runbook Worker VM extension, you can configure scripts in Azure Automation that will run on-premises. We can trigger runbooks from within Logic Apps and therefore can still use Lifecycle Workflows with custom extensions. This way we can set a temporary password on an account, require password change on sign in and sent the password to either the user via SMS or the manager by mail.
 
@@ -43,8 +43,8 @@ I once built an application that hands out Verified Employee ID credentials when
 
 Passwordless is still a future thought for most companies with a large on-premises footprint. In the meantime we have to wait for a native method that is secure and failure-proof. It would be great if we could use the Change Password flow within the MyAccounts/MySecurityInfo portal when you sign in with a secure passwordless method without providing your current password. Until then, what are your thoughts on delivering passwords without using third party tooling?
 
-[^footnote]: Microsoft mentions this method on one of the provisioning learn pages. [Plan for password delivery of new user accounts - Microsoft Entra ID | Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-provision#plan-for-password-delivery-of-new-user-accounts)
+[^1]: Microsoft mentions this method on one of the provisioning learn pages. https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-provision#plan-for-password-delivery-of-new-user-accounts
 
-[^fn-nth-2]: Authentication Methods Change Password via Microsoft Graph cannot be used with Application or Managed Identities. Only Delegated permissions are allowed. [authenticationMethod: resetPassword - Microsoft Graph v1.0 | Microsoft Learn](https://learn.microsoft.com/en-us/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0&tabs=http#permissions)
+[^2]: Authentication Methods Change Password via Microsoft Graph cannot be used with Application or Managed Identities. Only Delegated permissions are allowed. https://learn.microsoft.com/en-us/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0&tabs=http#permissions
 
-[^fn-nth-3]: You can update the users password profile with the https://graph.microsoft.com/user/{userId} endpoint. However, this will be overwritten with the first sync from on-premises. Entra Connect Sync has an default interval of 30 minutes while Cloud Sync runs intervals of around 3 minutes.
+[^3]: You can update the users password profile with the https://graph.microsoft.com/user/{userId} endpoint. However, this will be overwritten with the first sync from on-premises. Entra Connect Sync has an default interval of 30 minutes while Cloud Sync runs intervals of around 3 minutes.
