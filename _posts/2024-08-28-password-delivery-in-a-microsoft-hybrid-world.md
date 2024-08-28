@@ -6,7 +6,7 @@ tags: [entra, identity governance, passwordless]
 image: ../assets/img/password-delivery-in-a-microsoft-hybrid-world/password-delivery.jpg
 ---
 
-*Password delivery is a pain in the \***. We all know we must do better. Unfortunately, we cannot change the world in one go, so we have to live with processes within the organization and support them as best as possible, while still striving for a passwordless environment. This blog focuses on the methods available in Hybrid Active Directory/Microsoft Entra ID environments when using Inbound User Provisioning via the native API-driven inbound user provisioning.*
+*Password delivery is a pain in the \***. We all know we must do better. Unfortunately, we cannot change the world in one go, so we have to live with processes within the organization and support them as best as possible, while still striving for a passwordless environment. This blog focuses on the methods available for __password delivery__ in Hybrid Active Directory/Microsoft Entra ID environments when using Inbound User Provisioning via the native API-driven inbound user provisioning.*
 
 If you use the native Inbound User Provisioning, you might know that it generates a password for new users that cannot be retrieved. Microsoft advises delivering a Temporary Access Pass (TAP) via lifecycle workflows. They even added a template to create and send the TAP to the user’s manager on the employee’s hire date so they can provide it to the new employee. The employee should then use the TAP to register passwordless methods like the Authenticator App with Phone-sign-in.
 
