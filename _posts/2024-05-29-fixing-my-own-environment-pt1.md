@@ -2,7 +2,7 @@
 title: 'Fixing my own environment - Part 1'
 author: Guido
 categories: [Microsoft Entra ID, Tutorial]
-tags: [entra, identity governance, conditional access, diy]
+tags: [entra, identity governance, conditional access, diy, fixingMyOwnEnvironment]
 image: ../assets/img/fixing-my-own-environment-pt1/maester-report.png
 published: true
 ---

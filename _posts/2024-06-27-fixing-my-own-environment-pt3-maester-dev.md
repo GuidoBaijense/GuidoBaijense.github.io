@@ -2,7 +2,7 @@
 title: 'Fixing my own environment - Part 3 - Maester.dev'
 author: Guido
 categories: [Microsoft Entra ID, Tutorial]
-tags: [entra, identity governance, conditional access, diy, maester]
+tags: [entra, identity governance, conditional access, diy, maester, fixingMyOwnEnvironment]
 image: ../assets/img/fixing-my-own-environment-pt3-maester-dev/maester-dev-header.png
 ---
 

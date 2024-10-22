@@ -2,13 +2,13 @@
 title: 'Fixing my own environment - Part 4: Zero Trust Assessment'
 author: Guido
 categories: [Zero Trust]
-tags: [assessment, Zero Trust]
-image: ../assets/img/fixing-my-own-environment-pt4-ztassessment/zero-trust-assessment.png
+tags: [assessment, Zero Trust, fixingMyOwnEnvironment]
+image: ../assets/img/fixing-my-own-environment-pt4-ztassessment/ztassess-header.png
 ---
 
 This blog will show you how you can leverage the Zero Trust Assessment to improve your security posture and how I have used this to strengthen the posture of my own environment. The Zero Trust Assessment is a tool that helps you to identify the current state of your environment and provides you with insights on how to improve your security posture. It is a great way to get started with Zero Trust and to identify areas where you can make improvements.
 
-In the past blogs in this series, I have covered Maester.dev and Microsoft Secure Score for Identity. These tools are great for identifying areas where you can improve your security posture, but they do not provide you with a roadmap on how to get there. Does this assessment realy help you to get there? Let's find out!
+In the past blogs [past blogs]({% link tags/fixingMyOwnEnvironment %}) in this series, I have covered [Maester.dev](https://maester.dev/) and Microsoft Secure Score for Identity. These tools are great for identifying areas where you can improve your security posture, but they do not provide you with a roadmap on how to get there. Does this assessment really help you to get there? Let's find out!
 
 >I know that I said before that I would continue with Maester.dev, but a colleague asked me about the ZTA tool and I wanted to know more about it as well. So I decided to write about this tool first. I will continue with Maester.dev in the next blog. Maybe.
 {: .prompt-tip}
@@ -16,6 +16,7 @@ In the past blogs in this series, I have covered Maester.dev and Microsoft Secur
 ## What is Zero Trust Assessment?
 
 [The website](https://aka.ms/ztassess) describes the Zero Trust Assessment as follows: "A tool to check your Microsoft tenant configuration for zero trust readiness." It is built by the `Microsoft Security → Customer Acceleration Team (CAT)` and is available for free. It is presented as a three steps process:
+
 1. **Run assessment**: The tool will assess the tenant config and downloads the roadmap templates that will be used during the (potential) workshops.
 2. **Strategy workshops**: Schedule workshops with Microsoft consultants for each of the Identity, Devices, Data and Network pillars.
 3. **Implement roadmap**: Review the results of the workshop and implement the zero trust roadmap across the entire digital estate for end to end security.
@@ -28,13 +29,15 @@ It is not that difficult to run the assessment. Al you need to do is:
 
 1. Open PowerShell 7
 2. Run the following command:
-```powershell
-Install-Module ZeroTrustAssessment
-Invoke-ZTAssessment
-```
+
+    ```powershell
+    Install-Module ZeroTrustAssessment
+    Invoke-ZTAssessment
+    ```
+
 3. Follow the instructions for login and permissions.
 
-It leverages the Microsoft Graph PowerShell Enterprise Application (`AppId: 14d82eec-204b-4c2f-b7e8-296a70dab67e`) in your environment to connect to Microsoft Graph and read the configuration of your tenant with delegated permissions, but it is also possible to use a specifically crafted application registration for this assessment. You should then use the `ClientId` and `TenantId` parameters when Invoking the assessment. If you want, you can also invoke the assessment with an `AccessToken`.
+It leverages the Microsoft Graph PowerShell Enterprise Application (`AppId: 14d82eec-204b-4c2f-b7e8-296a70dab67e`) in your environment to connect to Microsoft Graph and read the configuration of your tenant with delegated permissions, but it is also possible to use a specifically crafted application registration for this assessment. You should then use the `ClientId` and `TenantId` parameters when invoking the assessment. If you want, you can also invoke the assessment with an `AccessToken`.
 
 The following scopes are used to connect with Microsoft Graph:
 
@@ -67,7 +70,7 @@ Afterwards, it will compare this information with some predefined settings and w
 
 ## The results
 
-The results are presented in a Excel document that can also be used for roadmapping. It contains data for the Identity, Devices, Data and Network pillars. As I am a Identity Consultant, I will only look at the Identity pillar. Also, I don't have networks, Data or devices in my tenant.
+The results are presented in a Excel document that can also be used for road-mapping. It contains data for the Identity, Devices, Data and Network pillars. As I am a Identity Consultant, I will only look at the Identity pillar. Also, I don't have networks, Data or devices in my tenant.
 
 And wow. The result's say it's bad. It only has scores for Devices and Identity. Devices scores 'Partially deployed' and Identity scores 'Not deployed'. This is not good. I have to fix this!
 
@@ -80,6 +83,7 @@ When looking into the real scores, it's not that bad at all: a `46%` score for I
 _Specific Identity Results in Zero Trust Assessment report_
 
 If we look into the Identity results in detail, we see that the following settings are not deployed:
+
 - **Workload identities**: I don't have any workload identities licenses in my tenant. Also, I don't have any privileged workload identities anymore, since I've removed them when writing the [Microsoft Secure Score for Identity](2024-05-30-fixing-my-own-environment-pt2-secure-score.md) blog.
 
 - **Privileged identities**: Two items that I have failed:

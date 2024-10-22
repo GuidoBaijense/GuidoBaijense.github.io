@@ -2,7 +2,7 @@
 title: 'Fixing my own environment - Part 2 - Microsoft Secure Score for Identity'
 author: Guido
 categories: [Microsoft Entra ID, Tutorial]
-tags: [entra, identity governance, conditional access, diy]
+tags: [entra, identity governance, conditional access, diy, fixingMyOwnEnvironment]
 image: ../assets/img/fixing-my-own-environment-pt2-secure-score/SecureScore overview preview.png
 published: true
 ---
