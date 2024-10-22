@@ -2,16 +2,16 @@
 title: 'Fixing my own environment - Part 4: Zero Trust Assessment'
 author: Guido
 categories: [Zero Trust]
-tags: [assessment, Zero Trust, fixingMyOwnEnvironment]
+tags: [assessment, Zero Trust, fixingMyOwnEnvironment, diy]
 image: ../assets/img/fixing-my-own-environment-pt4-ztassessment/ztassess-header.png
 ---
 
 This blog will show you how you can leverage the Zero Trust Assessment to improve your security posture and how I have used this to strengthen the posture of my own environment. The Zero Trust Assessment is a tool that helps you to identify the current state of your environment and provides you with insights on how to improve your security posture. It is a great way to get started with Zero Trust and to identify areas where you can make improvements.
 
-In the past blogs [past blogs]({% link tags/fixingMyOwnEnvironment %}) in this series, I have covered [Maester.dev](https://maester.dev/) and Microsoft Secure Score for Identity. These tools are great for identifying areas where you can improve your security posture, but they do not provide you with a roadmap on how to get there. Does this assessment really help you to get there? Let's find out!
+In the past blogs [past blogs](https://blog.pentiago365.nl/tags/fixingMyOwnEnvironment) in this series, I have covered [Maester.dev](https://maester.dev/) and Microsoft Secure Score for Identity. These tools are great for identifying areas where you can improve your security posture, but they do not provide you with a roadmap on how to get there. Does this assessment really help you to get there? Let's find out!
 
 >I know that I said before that I would continue with Maester.dev, but a colleague asked me about the ZTA tool and I wanted to know more about it as well. So I decided to write about this tool first. I will continue with Maester.dev in the next blog. Maybe.
-{: .prompt-tip}
+{: .prompt-info}
 
 ## What is Zero Trust Assessment?
 
@@ -111,4 +111,7 @@ The secure registration of security info is turned off by choice. It is my test 
 
 After a rerun of the assessment, the results are a bit better. The Identity gets a 'Partially deployed' score of `53%`. I don't think that this assessment functionality of the tool really helps you with your security posture. Maester.dev and Microsoft Secure Score for Identity are better tools for that. The strength of the Zero Trust Assessment is the roadmap that is generated.
 
-For each pillar, it comes with an overview of what items you can address and it links to Microsoft Learn pages with information on how you can address them. This is a great way to get started with Zero Trust and to identify areas where you can make improvements. It is a great tool for companies that want to get started with Zero Trust and need a roadmap to get there. And as an IAM consultant, I can use this tool to help my customers with their Zero Trust journey and will recommend it to everyone that want's to start or evaluate their journey.
+![Zero Trust Assessment Roadmap](../assets/img/fixing-my-own-environment-pt4-ztassessment/ztassess-roadmap.png)
+_The Zero Trust Assessment Roadmap feature_
+
+For each pillar, it comes with an overview of what items you can address and it links to Microsoft Learn pages with information on how you can address them. This is a great way to get started with Zero Trust and to identify areas where you can make improvements. It is a great tool for companies that want to get started with Zero Trust and need a roadmap to get there. And as an IAM consultant, I can use this tool to help my customers with their Zero Trust journey and will recommend it to everyone that wants to start or evaluate their journey.
