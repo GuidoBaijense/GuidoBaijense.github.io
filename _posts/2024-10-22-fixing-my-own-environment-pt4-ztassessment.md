@@ -8,7 +8,7 @@ image: ../assets/img/fixing-my-own-environment-pt4-ztassessment/ztassess-header.
 
 This blog will show you how you can leverage the Zero Trust Assessment to improve your security posture and how I have used this to strengthen the posture of my own environment. The Zero Trust Assessment is a tool that helps you to identify the current state of your environment and provides you with insights on how to improve your security posture. It is a great way to get started with Zero Trust and to identify areas where you can make improvements.
 
-In the past blogs [past blogs](https://blog.pentiago365.nl/tags/fixingMyOwnEnvironment) in this series, I have covered [Maester.dev](https://maester.dev/) and Microsoft Secure Score for Identity. These tools are great for identifying areas where you can improve your security posture, but they do not provide you with a roadmap on how to get there. Does this assessment really help you to get there? Let's find out!
+In the past blogs [past blogs](https://blog.pentiago365.nl/tags/fixingmyownenvironment) in this series, I have covered [Maester.dev](https://maester.dev/) and Microsoft Secure Score for Identity. These tools are great for identifying areas where you can improve your security posture, but they do not provide you with a roadmap on how to get there. Does this assessment really help you to get there? Let's find out!
 
 >I know that I said before that I would continue with Maester.dev, but a colleague asked me about the ZTA tool and I wanted to know more about it as well. So I decided to write about this tool first. I will continue with Maester.dev in the next blog. Maybe.
 {: .prompt-info}
