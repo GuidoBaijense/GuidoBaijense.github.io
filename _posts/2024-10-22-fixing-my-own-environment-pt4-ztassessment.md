@@ -84,7 +84,7 @@ _Specific Identity Results in Zero Trust Assessment report_
 
 If we look into the Identity results in detail, we see that the following settings are not deployed:
 
-- **Workload identities**: I don't have any workload identities licenses in my tenant. Also, I don't have any privileged workload identities anymore, since I've removed them when writing the [Microsoft Secure Score for Identity](2024-05-30-fixing-my-own-environment-pt2-secure-score.md) blog.
+- **Workload identities**: I don't have any workload identities licenses in my tenant. Also, I don't have any privileged workload identities anymore, since I've removed them when writing the [Microsoft Secure Score for Identity]({% post_url 2024-05-30-fixing-my-own-environment-pt2-secure-score %}) blog.
 
 - **Privileged identities**: Two items that I have failed:
   - Configure JIT access for privileged roles.
