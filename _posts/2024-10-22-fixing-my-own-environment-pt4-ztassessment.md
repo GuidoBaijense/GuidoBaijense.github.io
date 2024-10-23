@@ -13,6 +13,9 @@ In the past blogs [past blogs](https://blog.pentiago365.nl/tags/fixingmyownenvir
 >I know that I said before that I would continue with Maester.dev, but a colleague asked me about the ZTA tool and I wanted to know more about it as well. So I decided to write about this tool first. I will continue with Maester.dev in the next blog. Maybe.
 {: .prompt-info}
 
+>**Update 2024-10-23:** The aka.ms-link has been taken down for now and has been replaced with a sign-up-form for a newer version. Until then, you can still access the website at https://microsoft.github.io/zerotrustassessment/ or visit the project on [Github](https://github.com/microsoft/zerotrustassessment).
+{: .prompt-info}
+
 ## What is Zero Trust Assessment?
 
 [The website](https://aka.ms/ztassess) describes the Zero Trust Assessment as follows: "A tool to check your Microsoft tenant configuration for zero trust readiness." It is built by the `Microsoft Security → Customer Acceleration Team (CAT)` and is available for free. It is presented as a three steps process:
@@ -115,3 +118,14 @@ After a rerun of the assessment, the results are a bit better. The Identity gets
 _The Zero Trust Assessment Roadmap feature_
 
 For each pillar, it comes with an overview of what items you can address and it links to Microsoft Learn pages with information on how you can address them. This is a great way to get started with Zero Trust and to identify areas where you can make improvements. It is a great tool for companies that want to get started with Zero Trust and need a roadmap to get there. And as an IAM consultant, I can use this tool to help my customers with their Zero Trust journey and will recommend it to everyone that wants to start or evaluate their journey.
+
+## Update: 2024-10-23
+
+After publishing this blog, I received a message on LinkedIn from Clay Taylor. One of the creators of the Zero Trust Assessment tool. 
+
+![LinkedIn Message by Clay Taylor, Co-creator of Zero Trust Assessment](../assets/img/fixing-my-own-environment-pt4-ztassessment/ztassess-linkedinmessage.png)
+_LinkedIn Message by Clay Taylor, Co-creator of Zero Trust Assessment_
+
+This means that the website has been taken down (for now) and you can register for the 'waiting list' for the new version. Register now at [https://aka.ms/ztassess](https://aka.ms/ztassess) to be one of the first to try the new version of the Zero Trust Assessment tool.
+
+You can still download the project from Github or visit the [direct url for the site on Github Pages](https://microsoft.github.io/zerotrustassessment/).
